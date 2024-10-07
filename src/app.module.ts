@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { PlayersModule } from './players/players.module';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { ConfigModule } from '@nestjs/config';
         rejectUnauthorized: true,
         ca: process.env.DB_SSL_CA,
       },
-    }),
+    }), PlayersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
