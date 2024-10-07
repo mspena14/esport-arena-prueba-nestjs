@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PlayersModule } from './players/players.module';
+import { TournamentsModule } from './tournaments/tournaments.module';
 
 @Module({
   imports: [
@@ -19,12 +20,12 @@ import { PlayersModule } from './players/players.module';
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
       ssl: {
         rejectUnauthorized: true,
         ca: process.env.DB_SSL_CA,
       },
-    }), PlayersModule,
+    }), PlayersModule, TournamentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
